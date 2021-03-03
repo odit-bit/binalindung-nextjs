@@ -1,0 +1,23 @@
+import Link from "next/link";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import { Button, Typography } from "@material-ui/core";
+
+export default function LaporanItem({ post }) {
+  return (
+    <>
+      <Card variant="outlined">
+        <CardContent>
+          <Typography>
+            <h3>{post.judul}</h3>
+          </Typography>
+          {/* use button tag (link) to see detail page */}
+          <Link href="/laporan/[id]" as={`/laporan/${post.slug}`}>
+            {"Lihat"}
+          </Link>
+        </CardContent>
+      </Card>
+    </>
+  );
+}
