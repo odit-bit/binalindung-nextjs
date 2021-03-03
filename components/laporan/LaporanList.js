@@ -6,9 +6,9 @@ export default function LaporanList({ posts }) {
     <>
       <Container>
         {posts.map((post) => (
-          <LaporanItem post={post.fields} />
+          <LaporanItem post={post.fields} key={post.fields.slug} />
         ))}
-        <pre>{JSON.stringify(posts, null, 4)}</pre>
+        {/* <pre>{JSON.stringify(posts, null, 4)}</pre> */}
       </Container>
     </>
   );

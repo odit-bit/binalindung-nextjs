@@ -4,13 +4,14 @@ import LaporanDetail from "../../components/laporan/LaporanDetail";
 const Laporan = ({ post }) => {
   // const { id } = useRouter().query;
   const exist = post.pdf;
-  const pdfLink = "";
+  let pdfLink;
   if (exist) {
-    pdfLink = post.pdf.fields.files.url;
+    pdfLink = post.pdf.fields.file.url;
   }
   return (
     <>
       <LaporanDetail
+        key={post.slug}
         judul={post.judul}
         text={post.text}
         photo={post.photo.fields.file.url}

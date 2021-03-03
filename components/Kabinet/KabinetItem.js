@@ -5,7 +5,7 @@ import Typography from "@material-ui/core/Typography";
 export default function KabinetItem({ photo }) {
   const classes = useStyles();
   return (
-    <div key={photo.id}>
+    <div>
       <Avatar
         alt={photo.title}
         src={photo.url} //photo.file.url for contentfull cms

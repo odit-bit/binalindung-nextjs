@@ -37,7 +37,7 @@ const Korbid = ({ photoList, divisi }) => {
       <Grid container justify="center" spacing={2} margin="auto">
         {photoList.map((photo) => {
           return (
-            <Grid item xs={6} sm={4}>
+            <Grid item xs={6} sm={4} key={photo.id}>
               {/* photo.field for Contentful CMS */}
               <KabinetItem photo={photo} />
             </Grid>
