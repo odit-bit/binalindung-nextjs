@@ -1,24 +1,34 @@
-import Head from "next/head";
-// import LaporanList from "../components/laporan/LaporanList";
-// import styles from "../styles/Home.module.css";
-
-export default function Home({ posts }) {
+import { Typography } from "@material-ui/core";
+import Image from "next/image";
+export default function Home({ data }) {
   return (
-    <>
-      <h1>Selamat datang di Binalindung</h1>
-      {/* <LaporanList posts={posts} /> */}
-    </>
+    <div>
+      <Typography variant="h2">selamat datang di Bina Lindung</Typography>
+      {/* {data.map((detail) => {
+        return (
+          <>
+            <pre>{JSON.stringify(detail.fields.title, 0, 4)}</pre>
+            <pre>{JSON.stringify(detail.fields.description, 0, 4)}</pre>
+            <pre>{JSON.stringify(detail.fields.file.url, 0, 4)}</pre>
+          </>
+        );
+      })} */}
+      {/* <pre>{JSON.stringify(data, 0, 4)}</pre> */}
+      <br />
+      <br />
+      <br />
+      <Typography variant="h3">{data.fields.description}</Typography>
+      <Image height={400} width={400} src={"http:" + data.fields.file.url} />
+    </div>
   );
 }
 
-//Get Data and assign to props function
-// export async function getStaticProps() {
-//   const res = await fetch(
-//     `https://jsonplaceholder.typicode.com/posts?_limit=6`
-//   );
-//   const posts = await res.json(); //return array of object
-
-//   return {
-//     props: { posts }, // posts will assign as a prop of component
-//   };
-// }
+import { client } from "../config";
+export async function getStaticProps() {
+  const entry = await client.getAsset("lg1tSvO4g34A8gRWRJfhg");
+  // const parseEntry = client.parseEntries(entry.fields.photo);
+  console.log(entry);
+  return {
+    props: { data: entry }, // posts will assign as a prop of component
+  };
+}

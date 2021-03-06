@@ -1,40 +1,29 @@
-import KabinetList from "../../components/Kabinet/KabinetList";
-
-export default function index({ photos }) {
-  // const kabinetData = "cihuy";
-  return (
-    <div>
-      <KabinetList photoList={photos} />
-    </div>
-  );
-}
-
-// JSONPlaceHolder;
+// Query from CMS
+import { client } from "../../config";
 export async function getStaticProps() {
-  const res = await fetch(
-    `https://jsonplaceholder.typicode.com/photos?_limit=5`
-  );
-  const photos = await res.json(); //return array of object
-
+  const entry = await client.getEntry("7dUUk9G70us0stM3XAtR5L");
+  const parseEntry = client.parseEntries(entry.fields.photo);
   return {
-    props: { photos }, // posts will assign as a prop of component
+    props: { photos: parseEntry }, // posts will assign as a prop of component
   };
 }
 
-/*******COntentfull CMS**********/
-// export async function getStaticProps() {
-//   const contentful = require("contentful");
+/**************************/
 
-//   //initialize contentful client
-//   const client = contentful.createClient({
-//     space: "b9js7d88yumm",
-//     accessToken: "aoWZMkpdhNyml2t_2S4SXeXC8P9UMA0ub6M1dhyN2io",
-//   });
+//REACT COMPONENT from HERE
+import KabinetItem from "../../components/Kabinet/KabinetItem";
+import KabinetList from "../../components/Kabinet/KabinetList";
+import KabinetTab from "../../components/Kabinet/KabinetTab";
 
-//   const res = await client.getEntry("6cfRDZ5myMTvI0okwTuUjH");
-//   const photos = res.fields.photo;
-
-//   return {
-//     props: { photos }, // posts will assign as a prop of component
-//   };
-// }
+export default function index({ photos }) {
+  return (
+    <div>
+      <KabinetItem
+        title={photos[0].fields.title}
+        description={photos[0].fields.description}
+        url={photos[0].fields.file.url}
+      />
+      <KabinetTab photos={photos} />
+    </div>
+  );
+}

@@ -1,31 +1,29 @@
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import style from "../../styles/Kabinet.module.css";
 
-export default function KabinetItem({ photo }) {
+export default function KabinetItem({ title, description, url }) {
   const classes = useStyles();
   return (
-    <div>
+    <div className={style.avatarContainer}>
       <Avatar
-        alt={photo.title}
-        src={photo.url} //photo.file.url for contentfull cms
+        alt={title}
+        src={url} //photo.file.url for contentfull cms
         className={classes.avatarLarge}
       />
 
-      <Typography variant="body1" color="textPrimary" component="p">
-        {photo.title}
+      <Typography variant="body1" color="textPrimary">
+        {title}
       </Typography>
-      <Typography variant="body2" color="textSecondary" component="p">
-        {photo.description}
+      <Typography variant="body2" color="textSecondary">
+        {description}
       </Typography>
     </div>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
-  center: {
-    textAlign: "center",
-  },
   avatarLarge: {
     // width: theme.spacing(15),
     width: theme.spacing(13),

@@ -2,7 +2,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 
 import { makeStyles } from "@material-ui/core/styles";
-import style from "../styles/Home.module.css";
+import style from "../styles/Layout.module.css";
 import { Container } from "@material-ui/core";
 
 const Layout = ({ children }) => {
@@ -10,7 +10,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header />
-      <main>{children}</main>
+      <Container>
+        <main className={style.main}>{children}</main>
+      </Container>
       <Footer className={style.footer} />
     </>
   );

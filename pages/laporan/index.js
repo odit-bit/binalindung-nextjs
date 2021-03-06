@@ -1,16 +1,4 @@
-import LaporanList from "../../components/laporan/LaporanList";
-
-export default function LaporanIndex({ posts }) {
-  return (
-    <>
-      <div>
-        <LaporanList posts={posts} />
-      </div>
-    </>
-  );
-}
-
-/**COntentful CMS */
+/**COntentful CMS *****/
 import { client } from "../../config";
 export async function getStaticProps() {
   const contentful = require("contentful");
@@ -24,4 +12,15 @@ export async function getStaticProps() {
   return {
     props: { posts }, // posts will assign as a prop of component
   };
+}
+
+//REACT COMPONENT start HERE
+import LaporanList from "../../components/laporan/LaporanList";
+
+export default function LaporanIndex({ posts }) {
+  return (
+    <>
+      <LaporanList posts={posts} />
+    </>
+  );
 }

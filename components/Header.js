@@ -39,7 +39,7 @@ export default function Header() {
               Kabinet
             </Link>
             <Link href="/laporan" color="inherit" underline="none">
-              Pengumuman
+              Koran-BL
             </Link>
           </div>
 

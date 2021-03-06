@@ -23,5 +23,5 @@ Meta.defaultProps = {
   title: "Binalindung",
   keywords:
     "website rw11, Binalindung, Jaticempaka, pondok gede, bekasi, ketua rw11, pengurus, sekretariat rw11",
-  description: "Situs resmi komplek Binalindung rw-11 jaticempaka pnodok gede",
+  description: "Situs resmi komplek Binalindung rw-11 jaticempaka pondok gede",
 };
