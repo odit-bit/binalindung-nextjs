@@ -1,10 +1,8 @@
-// Query from CMS
-import { client } from "../../config";
+import { getData } from "../../config/contentful";
 export async function getStaticProps() {
-  const entry = await client.getEntry("7dUUk9G70us0stM3XAtR5L");
-  const parseEntry = client.parseEntries(entry.fields.photo);
+  const entry = await getData(process.env.CONTENTFUL_KABINET_ENTRY_ID);
   return {
-    props: { photos: parseEntry }, // posts will assign as a prop of component
+    props: { kabinet: entry.fields.anggota }, // posts will assign as a prop of component
   };
 }
 
@@ -12,18 +10,19 @@ export async function getStaticProps() {
 
 //REACT COMPONENT from HERE
 import KabinetItem from "../../components/Kabinet/KabinetItem";
-import KabinetList from "../../components/Kabinet/KabinetList";
 import KabinetTab from "../../components/Kabinet/KabinetTab";
 
-export default function index({ photos }) {
+export default function index({ kabinet }) {
   return (
     <div>
+      {/* ketua rw detail Only */}
       <KabinetItem
-        title={photos[0].fields.title}
-        description={photos[0].fields.description}
-        url={photos[0].fields.file.url}
+        title={kabinet.ketua.nama}
+        description={kabinet.ketua.jabatan}
+        url={kabinet.ketua.image}
       />
-      <KabinetTab photos={photos} />
+      {/* rest of detail */}
+      <KabinetTab KabinetTab={kabinet} />
     </div>
   );
 }

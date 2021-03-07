@@ -21,19 +21,7 @@ function TabPanel(props) {
       aria-labelledby={`scrollable-force-tab-${index}`}
       {...other}
     >
-      {value === index && (
-        <>
-          <Grid
-            container
-            // xs={8}
-            direction="row"
-            justify="center"
-            alignItems="center"
-          >
-            {children}
-          </Grid>
-        </>
-      )}
+      {value === index && <>{children}</>}
     </div>
   );
 }
@@ -52,7 +40,7 @@ function a11yProps(index) {
   };
 }
 
-export default function KabinetTab({ photos }) {
+export default function KabinetTab({ KabinetTab }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -76,10 +64,10 @@ export default function KabinetTab({ photos }) {
       </Tabs>
 
       <TabPanel className={style.tabPanel} value={value} index={0}>
-        <KabinetList photoList={photos} divisi="Pengurus" />
+        <KabinetList KabinetList={KabinetTab.Pengurus} />
       </TabPanel>
-      <TabPanel value={value} index={1}>
-        <KabinetList photoList={photos} divisi="Koordinator Bidang" />
+      <TabPanel className={style.tabPanel} value={value} index={1}>
+        <KabinetList KabinetList={KabinetTab.koordinator} />
       </TabPanel>
     </>
   );

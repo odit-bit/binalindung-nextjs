@@ -1,27 +1,43 @@
 import KabinetItem from "./KabinetItem";
 import { makeStyles } from "@material-ui/core/styles";
-import style from "../../styles/Kabinet.module.css";
+import style from "../../styles/KabinetList.module.css";
+import { Paper, Typography } from "@material-ui/core";
+import Grid from "@material-ui/core/Grid";
 
-export default function KabinetList({ photoList, divisi }) {
-  const classes = useStyles();
+export default function KabinetList({ KabinetList }) {
+  // const classes = useStyles();
   return (
     <>
-      {photoList.map((photo, index) => {
-        if (photo.fields.description != "Ketua Rw") {
-          return (
-            <div key={index}>
-              <KabinetItem
-                title={photo.fields.title}
-                description={photo.fields.description}
-                url={photo.fields.file.url}
-              />
+      {KabinetList.map((kabinet, index) => {
+        return (
+          <div key={index} className={style.container}>
+            <div className={style.test}>
+              <Typography variant="h6">{kabinet.divisi}</Typography>
             </div>
-          );
-        }
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+              {kabinet.anggota.map((kabinet, index) => {
+                return (
+                  <div key={index}>
+                    <KabinetItem
+                      title={kabinet.nama}
+                      description={kabinet.jabatan}
+                      url={kabinet.image}
+                    />
+                  </div>
+                );
+              })}
+            </Grid>
+          </div>
+        );
       })}
       {/* <pre>{JSON.stringify(photoList.photo[0].fields, null, 4)}</pre> */}
     </>
   );
 }
 
-const useStyles = makeStyles((theme) => ({}));
+// const useStyles = makeStyles((theme) => ({}));

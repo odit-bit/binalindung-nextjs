@@ -3,7 +3,7 @@ import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 import style from "../../styles/Kabinet.module.css";
 
-export default function KabinetItem({ title, description, url }) {
+export default function KabinetItem({ title, description, url, divisi }) {
   const classes = useStyles();
   return (
     <div className={style.avatarContainer}>
